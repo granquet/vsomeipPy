@@ -1,0 +1,60 @@
+{
+    "unicast" : "192.168.7.33",
+    "netmask" : "255.255.255.0",
+    "logging" : 
+    {
+        "level" : "debug",
+        "console" : "true",
+        "file" : { "enable" : "true", "path" : "/tmp/vsomeip.log" },
+        "dlt" : "true"
+    },
+    "applications" :
+    [
+        {
+            "name" : "test_benoit",
+            "id" : "0x1343"
+        }
+    ],
+    "services" :
+    [
+        {
+            "service" : "42",
+            "instance" : "0x1",
+            "unreliable" : "30000",
+            "events" :
+            [
+                {
+                    "event" : "0x8003",
+                    "is_field" : "false"
+                },
+                {
+                    "event" : "0x8004",
+                    "is_field" : "false"
+                }
+            ],
+            "eventgroups" :
+            [
+                {
+                    "eventgroup" : "3",
+                    "events" : [ "0x8003", "0x8004" ],
+                    "is-multicast" : "false"
+                }
+            ]
+        }
+    ],
+    "routing" : "test_benoit",
+    "service-discovery" :
+    {
+        "enable" : "true",
+        "multicast" : "224.244.224.245",
+        "port" : "30491",
+        "protocol" : "udp",
+        "initial_delay_min" : "10",
+        "initial_delay_max" : "100",
+        "repetitions_base_delay" : "200",
+        "repetitions_max" : "3",
+        "ttl" : "16777215",
+        "cyclic_offer_delay" : "2000",
+        "request_response_delay" : "1500"
+    }
+}
